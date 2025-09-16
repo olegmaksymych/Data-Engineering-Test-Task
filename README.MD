@@ -65,7 +65,8 @@ data/report/report.json
 pip install -r requirements.txt
 python src/main.py
 ```
-
+ALSO - it is possible to run main.py using docker 
+ **_docker-compose up -d --build_**     
 
 ### **_🧪Testing_**
 Run tests regarding:
