@@ -20,7 +20,8 @@ This project implements a simple ETL (Extract–Transform–Load) pipeline with 
 
 
 ## The security veriables
-the security variables are saved in the .env file
+the security variables are saved in the .env file 
+using load_dotenv() function from dotenv module
 ---
 
 ## 🚀 Steps Implemented

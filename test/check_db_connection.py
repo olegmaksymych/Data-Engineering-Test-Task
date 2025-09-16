@@ -1,10 +1,13 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
 
-DB_USER = "postgres"
-DB_PASSWORD = "password"
-DB_NAME = "home_task"
-DB_HOST = "localhost"
-DB_PORT = "5432"
+load_dotenv()
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_NAME = os.getenv("DB_NAME")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
 
 try:
     conn = psycopg2.connect(

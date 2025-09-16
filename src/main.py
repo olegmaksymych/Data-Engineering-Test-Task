@@ -2,9 +2,11 @@ import os
 from extract import fetch_weather_data
 from transform import transform_weather_data
 from load import load_csv_psycopg2
+from dotenv import load_dotenv
 
 if __name__ == "__main__":
-    raw_file = r"C:\Users\olegm\PycharmProjects\PythonProject\src\data\raw\response.json"
+    load_dotenv()
+    raw_file = os.getenv("PATH_TO_RAW_FILE")
 
     # 1. Download from the API only if there is no local file yet
     if not os.path.exists(raw_file):
