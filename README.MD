@@ -18,6 +18,9 @@ This project implements a simple ETL (Extract–Transform–Load) pipeline with 
 - Docker / docker-compose
 - Apache Airflow
 
+
+## The security veriables
+the security variables are saved in the .env file
 ---
 
 ## 🚀 Steps Implemented
@@ -61,6 +64,7 @@ data/report/report.json
 pip install -r requirements.txt
 python src/main.py
 ```
+
 
 ### **_🧪Testing_**
 Run tests regarding:
