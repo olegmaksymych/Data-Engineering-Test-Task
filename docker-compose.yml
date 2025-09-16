@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  db:
+  postgres:
     image: postgres:17
-    container_name: weather_db
+    container_name: weather-postgres
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -12,7 +12,36 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
+
+  weather-app:
+    build: .
+    container_name: weather-app
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      API_KEY: ${API_KEY}
+      PATH_TO_RAW_FILE: ${PATH_TO_RAW_FILE}
+    volumes:
+      - ./src:/app/src
+    command: ["python", "src/main.py"]
+
+  jupyter:
+    image: jupyter/base-notebook:latest
+    container_name: weather-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    depends_on:
+      - postgres
+    environment:
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN}
 
 volumes:
-  postgres_data:
+  pgdata:
